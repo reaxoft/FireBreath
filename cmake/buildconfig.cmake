@@ -86,7 +86,9 @@ if(UNIX)
         # In addition, Gecko SDK on Mac OS X needs XP_MACOSX
         set(gecko_defs "${gecko_defs} -DXP_MACOSX")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DFB_MACOSX=1 -DUNICODE -D_UNICODE")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DFB_MACOSX=1 -DUNICODE -D_UNICODE")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++ -DFB_MACOSX=1 -DUNICODE -D_UNICODE")
+        set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++11")
+        set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
     endif()
 
     if(NOT APPLE)
@@ -99,6 +101,12 @@ if(UNIX)
         set(fPIC_flag "-fPIC")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DFB_X11=1")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DFB_X11=1")
+
+        if(FB_GUI_DISABLED)
+            set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DFB_GUI_DISABLED=1")
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DFB_GUI_DISABLED=1")    
+        endif()
+
     endif()
 
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${gecko_defs} ${fPIC_flag}")

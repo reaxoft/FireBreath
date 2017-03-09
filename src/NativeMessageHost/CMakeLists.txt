@@ -27,11 +27,14 @@ if (FIREBREATH)
 endif()
 
 include_directories(
+    ${FB_GECKOSDK_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${FB_CONFIG_DIR}
     ${Boost_INCLUDE_DIRS}
     ${FBLIB_INCLUDE_DIRS}
     ${FireWyrm_SOURCE_DIR}
+    ${FB_GECKOSDK_SOURCE_DIR}
+    ${GTK_INCLUDE_DIRS}
     )
 
 file (GLOB SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
@@ -103,6 +106,7 @@ target_link_libraries(${PROJECT_NAME}
     ${CMAKE_THREAD_LIBS_INIT}
     ${LIBDL_LIBRARIES}
     jsoncpp
+    ${GTK_LIBRARIES}
     )
 
 export(TARGETS ${PROJECT_NAME} APPEND FILE ${FB_EXPORT_FILE})
