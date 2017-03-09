@@ -7,6 +7,7 @@ message(STATUS "Adding PKG installer for ${PROJECT_NAME}")
 set(PLG_CRX_NAME ${PLUGIN_CRX_NATIVEHOST_NAME})
 set(BNDL_NAME "@{PLUGIN_name}.plugin")
 set(TMPL_RPATH "Contents/Resources/fwh-chrome-manifest.template")
+set(FF_TMPL_RPATH "Contents/Resources/fwh-firefox-manifest.template")
 set(NVH_RPATH "Contents/Resources/FireWyrmNativeMessageHost")
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Mac/scripts/postinstall ${CMAKE_CURRENT_BINARY_DIR}/scripts_tmp/postinstall @@ONLY)
