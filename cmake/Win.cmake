@@ -236,6 +236,7 @@ function (add_wix_installer PROJNAME WIX_SOURCEFILES WIX_COMPGROUP WIX_OUTDIR WI
         message(STATUS "Found wix extensions: ${EXTRA_EXTENSIONS}")
         set(NAMESHOST "[Filepath]")
         configure_file(${FB_TEMPLATE_DEST_DIR}/fwh-chrome-manifest.json ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CRX_NATIVEHOST_NAME}.template)
+        configure_file(${FB_TEMPLATE_DEST_DIR}/fwh-firefox-manifest.json ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CRX_NATIVEHOST_NAME}_f.template)
 
         set(SOURCELIST )
         FOREACH(_curFile ${WIX_SOURCEFILES})
