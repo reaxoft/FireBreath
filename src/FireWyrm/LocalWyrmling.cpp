@@ -62,6 +62,20 @@ LocalWyrmling& LocalWyrmling::operator=(const LocalWyrmling& rh) {
     return *this;
 }
 
+void LocalWyrmling::Invalidate() {
+	m_valid = false;
+	if (m_autoRelease) {
+		// If we're auto-releasing it we need to auto-retain it
+		FB::JSAPIPtr api_strong(m_api.lock());
+		WyrmBrowserHostPtr host_strong(m_browser.lock());
+		if (api_strong && host_strong) {
+			host_strong->releaseJSAPIPtr(api_strong);
+		}
+	}
+	m_api.reset();
+	m_browser.reset();
+}
+
 FB::FireWyrm::LocalWyrmling::~LocalWyrmling(void) {
     if (m_autoRelease) {
         // If we're auto-releasing it we need to auto-retain it

@@ -632,7 +632,9 @@ function wrapAlienWyrmling(wyrmhole, wyrmlingStore, spawnId, objectId) {
             refCount++;
         },
         release: function() {
-            refCount--;
+            if (refCount > 0) {
+                refCount--;
+            }
             if (objectId === 0) { return; } // queenlings must be manually destroyed
             setTimeout(function() { if (!refCount && !released) {
                 send(['RelObj', spawnId, objectId]);
