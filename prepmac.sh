@@ -5,7 +5,7 @@ GEN='Xcode'
 source "${0%/*}/common.sh" "$@"
 shift $USED_ARGS
 
-ARCH=-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES:-i386;x86_64}"
+ARCH=-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES:-x86_64}"
 
 pushd "$BUILDDIR"
 echo cmake -G "$GEN" -DFB_ROOT="${FB_ROOT}" ${ARCH} "$@" "${PROJDIR}"
